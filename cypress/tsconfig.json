@@ -1,0 +1,17 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "target": "ES6",
+    "module": "commonjs",
+    "sourceMap": true,
+    "typeRoots": [
+      "./typings",
+      "../node_modules/@types"
+    ],
+    "types": [
+      "cypress",
+      "cypress-cucumber"
+    ]
+  },
+  "include": ["support/**/*.ts"]
+}
