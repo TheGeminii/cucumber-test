@@ -32,4 +32,5 @@ Then('it succeeds in showing replaced parameter(s)', () => {
 
 Then('it will fail to show replaced parameter(s)', () => {
   console.log('Then it will fail to show replaced parameters');
+  console.log('it should have shown the values from the example table instead of <parameter>');
 });
