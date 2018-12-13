@@ -1,27 +1,35 @@
 # CucumberTest
+This project shows that with cucumber-preprocessor version 1.9.1 parameters do not work in tables for scenario outlines
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.1.3.
+## Example scenarios
+This example works as expected, parameters get replaced by values from the example table:
+``` 
+Scenario Outline: Test company details sentence
+    Given something
+    When I enter the following details for a company in a sentence "<name>", "<address>", "<zipcode>", "<city>"
+    Then it succeeds in showing replaced parameters
+    Examples:
+      | name           | address          | zipcode | city         |
+      | company name 1 | company street 1 | 10101   | company town |
+      | company name 2 | company street 2 | 20202   | company town |
+```
+This example does not work as expected, parameters don't get replaced by values from the example table:
+```
+  Scenario Outline: test company details table
+    Given something
+    When I enter the following details for a company:
+      | name   | address   | zipcode   | city   |
+      | <name> | <address> | <zipcode> | <city> |
+    Then it will fail to show replaced parameter
+    Examples:
+      | name           | address          | zipcode | city         |
+      | company name 1 | company street 1 | 10101   | company town |
+      | company name 2 | company street 2 | 20202   | company town |
 
-## Development server
+```
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## To see it in action
+Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`\
+Then run `npx cypress open` to actually see the test.\
+Relevant information is logged to the console, press <kbd>^⇧J</kbd>
 
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
